@@ -2,8 +2,8 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
-const secretKey = "hola1234";
-const { UserAppModel } = require("../bdModel.js");
+const secretKey = "key";
+const { UserModel } = require("../bdModel.js");
 
 var usuarioAppController = {};
 
@@ -46,7 +46,6 @@ usuarioAppController.createUser = async function (req, res) {
   const token = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
 
   var newUserApp = {
-    idSpoty: "",
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, salt),
@@ -55,14 +54,14 @@ usuarioAppController.createUser = async function (req, res) {
   };
 
   try {
-    const user = await UserAppModel.findOne({ email: newUserApp.email });
+    const user = await UserModel.findOne({ email: newUserApp.email });
     if (user) {
       console.error("Ya existe un usuario con ese email");
       return res
         .status(409)
         .json({ msj: "Ya existe un usuario con ese email" });
     } else {
-      const user = UserAppModel.create(newUserApp);
+      const user = UserModel.create(newUserApp);
       const expiresIn = 24 * 60 * 60;
       const aToken = jwt.sign({ id: user.id }, secretKey, {
         expiresIn: expiresIn,
@@ -88,16 +87,26 @@ usuarioAppController.createUser = async function (req, res) {
 
 usuarioAppController.reenviarCorreo = async function (req, res) {
   const email = req.body.email;
-  console.log("Email: " + email);
   const token = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
 
-  await UserAppModel.findOneAndUpdate(
-    { email: email },
-    { $set: { token: token } }
-  );
-  enviarCorreo(email, token);
+  try {
+    const user = await UserModel.findOne({ email: email });
+    if (!user) {
+      console.error("No se ha encontrado el usuario");
+      return res.status(409).json({ msj: "No se ha encontrado el usuario" });
+    } else {
+      await UserModel.findOneAndUpdate(
+        { email: email },
+        { $set: { token: token } }
+      );
+      enviarCorreo(email, token);
 
-  return res.json({ msj: "Token enviado" });
+      return res.json({ msj: "Token enviado" });
+    }
+  } catch (error) {
+    console.error("Error: " + err);
+    return res.status(500).json({ msj: "Error del servidor" });
+  }
 };
 
 //funcion para iniciar sesion y comprobaciones
@@ -108,7 +117,7 @@ usuarioAppController.loginAppUser = async (req, res, next) => {
   };
 
   try {
-    const user = await UserAppModel.findOne({ email: userData.email });
+    const user = await UserModel.findOne({ email: userData.email });
     if (!user) {
       console.error("No se ha encontrado el usuario");
       return res.status(409).json({ msj: "No se ha encontrado el usuario" });
@@ -128,7 +137,6 @@ usuarioAppController.loginAppUser = async (req, res, next) => {
         };
         return res.json({ dataUser });
       } else {
-        console.error("Contraseña incorrecta");
         return res.status(408).json({ msj: "Contraseña incorrecta" });
       }
     }
@@ -144,15 +152,45 @@ usuarioAppController.authToken = async function (req, res) {
   const email = req.body.email;
 
   try {
-    const user = await UserAppModel.findOne({ email: email });
-
+    const user = await UserModel.findOne({ email: email });
     if (!user) {
       console.error("Usuario no encontrado");
       return res.status(404).json({ msj: "Usuario no encontrado" });
     } else {
-      const tokens = front.token === user.token;
+      const tokens = front === user.token;
       return res.json({ tokens });
     }
+  } catch (error) {
+    console.error("Error: " + error);
+    return res.status(500).json({ msj: "Error del servidor" });
+  }
+};
+
+usuarioAppController.resetPass = async function (req, res) {
+  const email = req.body.email;
+  const newPass = req.body.newPass;
+
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(newPass, salt);
+
+  try {
+    const user = await UserModel.findOneAndUpdate(
+      { email: email },
+      { $set: { password: hashedPassword } }
+    );
+    const expiresIn = 24 * 60 * 60;
+    const aToken = jwt.sign({ id: user.id }, secretKey, {
+      expiresIn: expiresIn,
+    });
+
+    const dataUser = {
+      name: user.name,
+      email: user.email,
+      aToken: aToken,
+      expiresIn: expiresIn,
+    };
+
+    return res.json({ dataUser });
   } catch (error) {
     console.error("Error: " + error);
     return res.status(500).json({ msj: "Error del servidor" });

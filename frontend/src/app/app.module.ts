@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,9 @@ import { RegisterAppComponent } from './pages/register-app/register-app.componen
 import { InicioAppService } from './services/inicio-app.service';
 import { AuthTokenComponent } from './pages/auth-token/auth-token.component';
 import { ApiComponent } from './pages/api/api.component';
+import { NavbarApiComponent } from './components/navbar-api/navbar-api.component';
+import { UserComponent } from './pages/user/user.component';
+import { PassTokenComponent } from './pages/pass-token/pass-token.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +27,11 @@ import { ApiComponent } from './pages/api/api.component';
     RegisterAppComponent,
     AuthTokenComponent,
     ApiComponent,
+    NavbarApiComponent,
+    UserComponent,
+    PassTokenComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NoopAnimationsModule,
   ToastrModule.forRoot({
     timeOut: 5000,
     positionClass: 'toast-top-right',

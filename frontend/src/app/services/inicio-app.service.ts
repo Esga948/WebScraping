@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserApp } from '../models/user-app';
 import { JwtResp } from '../models/jwtresp';
+import { Track } from '../models/track';
 import { tap } from 'rxjs';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -61,6 +62,7 @@ export class InicioAppService {
 
   authToken(frontToken: string): Observable<{ tokens: boolean }> {
     const email = this.getEmail();
+
     return this.httpClient
       .post<{ tokens: boolean }>(`${this.APP_SERVER}/authToken`, {
         email,
@@ -71,27 +73,36 @@ export class InicioAppService {
           if (res.tokens) {
             console.log('Los tokens coinciden');
           } else {
-            this.toast.error('Los tokens no coinciden');
+            this.toast.error('Token incorrecto');
             console.log('Los tokens no coinciden');
           }
         })
       );
   }
 
-  reenviarToken(): void {
-    const email = this.getEmail();
+  reenviarToken(email: string): Observable<any> {
+    if (!email) {
+      email = this.getEmail();
+    }
+    this.saveEmail(email);
+    return this.httpClient.post(`${this.APP_SERVER}/reenviarToken`, {
+      email: email,
+    });
+  }
 
-    this.httpClient
-      .post(`${this.APP_SERVER}/reenviarToken`, { email: email })
-      .subscribe(
-        () => {
-          this.toast.info('Token enviado');
-        },
-        (err) => {
-          console.log('Error: ' + err);
-          this.toast.error('Error al enviar el token');
-        }
-      );
+  resetPass(newPass: string): Observable<any> {
+    var email = this.getEmail();
+    return this.httpClient.post(`${this.APP_SERVER}/resetPass`, { email, newPass: newPass});
+  }
+
+  getCollections(): Observable<string[]> {
+    return this.httpClient.get<string[]>(`${this.APP_SERVER}/getCollections`);
+  }
+
+  getTracks(collectionName: string): Observable<Track[]> {
+    return this.httpClient.get<Track[]>(
+      `${this.APP_SERVER}/datsT/${collectionName}`
+    );
   }
 
   logout(): void {

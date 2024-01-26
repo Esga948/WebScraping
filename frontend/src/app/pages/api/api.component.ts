@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { InicioAppService } from 'src/app/services/inicio-app.service';
-import { ToastrService } from 'ngx-toastr';
+import { Track } from 'src/app/models/track';
 
 @Component({
   selector: 'app-api',
@@ -9,30 +8,40 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./api.component.scss'],
 })
 export class ApiComponent implements OnInit {
-  userId: string = '';
-  genres: { [key: string]: number } = {};
-  artistNames: { [trackId: string]: string } = {};
   userAppName: string = '';
   userAppEmail: string = '';
+  allTracksMap: { [collectionName: string]: Track[] } = {};
 
-  constructor(
-    private route: ActivatedRoute,
-    private inicioAppService: InicioAppService,
-    private toast: ToastrService
-  ) {}
+  constructor(private inicioAppService: InicioAppService) {}
 
   ngOnInit(): void {
-    this.userId = this.route.snapshot.paramMap.get('userId') ?? '';
     this.userAppName = this.inicioAppService.getName();
     this.userAppEmail = this.inicioAppService.getEmail();
+    this.getCollectionsInfo();
   }
 
-
+  getCollectionsInfo(): void {
+    this.inicioAppService.getCollections().subscribe(
+      (data) => {
+        data.forEach((collectionName) => {
+          this.inicioAppService.getTracks(collectionName).subscribe(
+            (tracks) => {
+              this.allTracksMap[collectionName] = tracks;
+            },
+            (error) => {
+              console.error('Error:', error);
+            }
+          );
+        });
+      },
+      (error) => {
+        console.error('Error: ' + error);
+      }
+    );
+  }
 
   logout(): void {
     this.inicioAppService.logout();
-    window.open('https://open.spotify.com/intl-es', '_blank');
-    alert('Cierra sesion tambien en Spotify');
-    window.location.href = '/loginApp';
+    window.location.href = '/login';
   }
 }

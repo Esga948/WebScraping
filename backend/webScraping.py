@@ -156,19 +156,52 @@ else:
                                 div_canciones = soup.find_all('div', class_="JR0qJ")
 
                                 collection = db[genero]
-
+                                
                                 if div_canciones:
                                     for div_cancion in div_canciones:
 
                                         #Conseguimos las urls de las imagenes de las canciones
-                                        div_imag = div_cancion.find('div', class_="HVx5R")
-                                        if div_imag:
-                                            imag_tag = div_imag.find('img')
-                                            if imag_tag:
-                                                url_imag = imag_tag['src']
-                                                #Descarga la imagen
-                                                response = requests.get(url_imag)
-                                                imag_data = Binary(response.content)
+                                        #div_imag = div_cancion.find('div', class_="HVx5R")
+                                        #if div_imag:
+                                        #    imag_tag = div_imag.find('img')
+                                        #    if imag_tag:
+                                        #        url_imag = imag_tag['src']
+
+                                        #vamos al album y conseguimos la imagen
+                                        div_alb = div_cancion.find('div', class_="RYR7U a42T2 DpnMX twUvF")
+                                        if div_alb:
+                                            #Buscamos dentro del div el elemento a
+                                            a_element = div_alb.find('a')
+
+                                            if a_element is None:
+                                                print("Error en el elemento a")
+                                            else:
+                                                href = a_element.get('href')
+
+                                                if href is None:
+                                                    print("Error en el elemento href")
+                                                else:
+                                                    url = 'https://www.deezer.com' + href
+
+                                                    #Entramos en la url
+                                                    driver.get(url)
+
+                                                    #Cargamos el contenido
+                                                    wait = WebDriverWait(driver, 10000)
+                                                    wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'css-12exzde')))
+
+                                                    # Ahora obtén el código fuente de la página
+                                                    html = driver.page_source
+
+                                                    # Utiliza BeautifulSoup para analizar el HTML
+                                                    soup = BeautifulSoup(html, 'lxml')
+
+                                                    # Busca el div donde esta la información de cada cancion
+                                                    div_imag = soup.find('div', class_="css-12exzde")
+                                                    imag_tag = div_imag.find('img')
+                                                    if imag_tag:
+                                                        url_imag = imag_tag['src']
+
 
                                         #Conseguimos el nombre de las canciones
                                         div_nombreCancion = div_cancion.find('div', class_='XrQj3')
@@ -182,12 +215,12 @@ else:
                                         if div_nombreArtistas:
                                             a_elements = div_nombreArtistas.find_all('a', attrs={'data-testid': 'artist'})
                                             if a_elements:
-                                                artistas = ' - '.join(a.text for a in a_elements)
+                                                artistas = ', '.join(a.text for a in a_elements)
                                         
                                         document = {
-                                            'url_imagen': url_imag,
-                                            'nombre_cancion': cancion,
-                                            'nombre_artista': artistas
+                                            'imagen': url_imag,
+                                            'cancion': cancion,
+                                            'artista': artistas
                                         }
 
                                         # Inserta el documento en la base de datos

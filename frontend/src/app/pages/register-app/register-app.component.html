@@ -1,17 +1,15 @@
 <div class="container">
-    <div class="login">
-      <div class="login-triangle"></div>
-  
-      <h2 class="login-header">Register</h2>
-  
-      <form #frmRegister="ngForm" class="login-container" (ngSubmit)="onRegister(frmRegister)">
 
-        <p><input type="text" name="name" placeholder="Name" ngModel required/></p>
-        <p><input type="email" name="email" placeholder="Email" ngModel required/></p>
-        <p><input type="password" name="password" placeholder="Password" ngModel required/></p>
-        <p><input type="submit" value="Register" /></p>
-        
-      </form>
-    </div>
+  <h2 class="header">Register</h2>
+  <div class="info_container">
+
+    <form #frmRegister="ngForm" class="form" (ngSubmit)="onRegister(frmRegister)">
+      <p><input type="text" name="name" placeholder="Name" ngModel required /></p>
+      <p><input type="email" name="email" placeholder="Email" ngModel required /></p>
+      <p><input type="password" name="password" placeholder="Password" ngModel required /></p>
+      <div class="link">Ya tienes cuenta? <a href="/login">Log in</a></div>
+
+      <p><input type="submit" value="Register" /></p>
+    </form>
   </div>
-  
+</div>

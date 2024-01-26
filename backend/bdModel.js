@@ -3,14 +3,13 @@ const mongoose = require("mongoose");
 // Define el modelo para guardar los usuarios
 const userSchema = new mongoose.Schema(
   {
-    idSpoty: { type: String, unique: true },
     name: String,
     email: { type: String, required: true, unique: true },
     password: String,
     rol: Number,
     token: String,
   },
-  { collection: "UsersApp" }
+  { collection: "Users" }
 );
 
 userSchema.statics = {
@@ -22,6 +21,14 @@ userSchema.statics = {
     return this.find(query);
   },
 };
-const UserAppModel = mongoose.model("UsersApp", userSchema);
+const UserModel = mongoose.model("Users", userSchema);
 
-module.exports = { UserAppModel};
+//Define el modelo para las canciones
+const trackSchema = new mongoose.Schema({
+  _id: String,
+  imagen: String,
+  cancion: String,
+  artista: String,
+});
+
+module.exports = { UserModel, trackSchema };

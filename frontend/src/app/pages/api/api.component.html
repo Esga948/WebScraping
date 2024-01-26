@@ -1,19 +1,27 @@
 <div class="container">
-  <div class="login">
-    <div class="login-triangle"></div>
 
-    <h1 class="login-header">INICIO</h1>
+  <h1 class="header">INICIO</h1>
 
-    <div class="login-container">
-
-      <h2>Datos Usuario App</h2>
+  <div class="info_container">
+    <div class="user_info">
+      <h2>Datos Usuario</h2>
 
       <p>Nombre: {{ userAppName }}</p>
       <p>Email: {{ userAppEmail }}</p>
+    </div>
 
-      <div>
-        <button id="btn" (click)="logout()">Log out</button>
+    <div class="generos" *ngFor="let genre of allTracksMap | keyvalue">
+      <h2>{{ genre.key }}</h2>
+      <div class="list_canciones">
+        <div class="cancion" *ngFor="let track of allTracksMap[genre.key]">
+          <img src="{{track.imagen}}" alt="Imagen cancion" style="width:175px;height:175px;;"><br>
+          {{ track.cancion }} <br> {{ track.artista }}
+        </div>
       </div>
+    </div>
+
+    <div class="btn_logOut">
+      <button id="btn" (click)="logout()">Log out</button>
     </div>
   </div>
 </div>
