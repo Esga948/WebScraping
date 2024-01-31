@@ -61,7 +61,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Every row inside .login-container is defined with p tags */
+// Every row inside .login-container is defined with p tags 
 .form p {
   padding: 12px;
 }
@@ -86,7 +86,7 @@ body {
   color: #555;
 }
 
-/* Text fields' focus effect */
+// Text fields' focus effect 
 .form input[type="text"]:focus,
 .form input[type="email"]:focus,
 .form input[type="password"]:focus {
@@ -104,7 +104,7 @@ body {
   background: #17c;
 }
 
-/* Buttons' focus effect */
+// Buttons' focus effect 
 .form input[type="submit"]:focus {
   border-color: #05a;
 }

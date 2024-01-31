@@ -1,1 +1,26 @@
-<p>user works!</p>
+<h1 class="header">Info. User</h1>
+
+<div class="info_container">
+    <div class="form">
+        <form class="fr" action="/subir-imagen" method="post" enctype="multipart/form-data">
+            <!-- Utiliza un label con una imagen y un input oculto -->
+            <label for="imagen" style="cursor: pointer;">
+                <img src="{{imag}}" alt="Seleccionar imagen" width="375" height="375">
+                <input type="file" name="imagen" id="imagen" accept="image/*" style="display: none;" required>
+            </label>
+
+            <input type="submit" value="Save Image" />
+        </form>
+    </div>
+
+    <div class="form">
+        <p>Nombre:</p>
+        <p><input type="text" [(ngModel)]="userAppName" readonly></p>
+        <p>Email:</p>
+        <p><input type="text" [(ngModel)]="userAppEmail" readonly></p>
+        <p>Password:</p>
+        <p><input type="password" [(ngModel)]="userAppPass" readonly></p>
+
+        <p><button button id="btn" (click)="password()">Change Password</button></p>
+    </div>
+</div>

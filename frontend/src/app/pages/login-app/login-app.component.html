@@ -5,10 +5,10 @@
     <form #frmLogin="ngForm" class="form" (ngSubmit)="onLogin(frmLogin)">
       <p><input type="email" name="email" placeholder="Email" ngModel required /></p>
       <p><input type="password" name="password" placeholder="Password" ngModel required /></p>
-      <div class="link">¿Aún no tienes cuenta? <a href="/register">Register</a></div>
+      <div class="link">¿Has olvidado tu contraseña? <a href="/passToken">Reset password</a></div>
 
+      <div class="link">¿Aún no tienes cuenta? <a href="/register">Register</a></div>
       <p><input type="submit" value="Log in" /></p>
     </form>
-    <div class="link">¿Has olvidado tu contraseña? <a href="/passToken">Reset password</a></div>
   </div>
 </div>

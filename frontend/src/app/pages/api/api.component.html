@@ -1,27 +1,23 @@
-<div class="container">
+<h2 class="header">Top Songs</h2>
 
-  <h1 class="header">INICIO</h1>
+<div class="info_container">
+  <!--div class="user_info">
+    <h2>Datos Usuario</h2>
 
-  <div class="info_container">
-    <div class="user_info">
-      <h2>Datos Usuario</h2>
+    <p>Nombre: {{ userAppName }}</p>
+    <p>Email: {{ userAppEmail }}</p>
+  </div-->
 
-      <p>Nombre: {{ userAppName }}</p>
-      <p>Email: {{ userAppEmail }}</p>
-    </div>
-
-    <div class="generos" *ngFor="let genre of allTracksMap | keyvalue">
-      <h2>{{ genre.key }}</h2>
-      <div class="list_canciones">
-        <div class="cancion" *ngFor="let track of allTracksMap[genre.key]">
-          <img src="{{track.imagen}}" alt="Imagen cancion" style="width:175px;height:175px;;"><br>
-          {{ track.cancion }} <br> {{ track.artista }}
-        </div>
+  <div class="generos" *ngFor="let genre of allTracksMap | keyvalue">
+    <h2>{{ genre.key }}</h2>
+    <div class="list_canciones">
+      <div class="cancion" *ngFor="let track of allTracksMap[genre.key]">
+        <img src="{{track.imagen}}" alt="Imagen cancion" style="width:175px;height:175px;;"><br>
+        {{ track.cancion }} <br> {{ track.artista }}
       </div>
     </div>
-
-    <div class="btn_logOut">
-      <button id="btn" (click)="logout()">Log out</button>
-    </div>
   </div>
-</div>
+
+  <div class="btn_logOut">
+    <button id="btn" (click)="logout()">Log out</button>
+  </div>

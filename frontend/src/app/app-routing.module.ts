@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'api', component: ApiComponent },
   { path: 'user', component: UserComponent },
   { path: 'passToken', component: PassTokenComponent },
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
