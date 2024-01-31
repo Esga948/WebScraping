@@ -7,6 +7,7 @@ const apiController = require("../controller/apiController.js");
 router.post("/registerApp", usuarioAppController.createUser);
 router.post("/loginApp", usuarioAppController.loginAppUser);
 router.post("/authToken", usuarioAppController.authToken);
+router.post("/authToken2", usuarioAppController.authToken2);
 router.post("/reenviarTokenAuth", usuarioAppController.reenviarCorreoAuth);
 router.post("/reenviarToken", usuarioAppController.reenviarCorreo);
 router.post("/resetPass", usuarioAppController.resetPass);

@@ -27,7 +27,7 @@ export class PassTokenComponent implements OnInit {
       this.inicioAppService.reenviarToken(email).subscribe(
         () => {
           this.toast.info('Token enviado');
-          this.mostrarDiv = !this.mostrarDiv;
+          this.mostrarDiv = true;
         },
         (err) => {
           this.toast.error(err.error.msj || 'Error desconocido');
@@ -43,7 +43,7 @@ export class PassTokenComponent implements OnInit {
     var pass = form1.value.password;
     var pass2 = form1.value.password2;
 
-    this.inicioAppService.authToken(token).subscribe((res) => {
+    this.inicioAppService.authToken2(token).subscribe((res) => {
       if (res.tokens) {
         if (pass == '' || pass2 == '') {
           this.toast.error('Introduzca la contraseña dos veces');

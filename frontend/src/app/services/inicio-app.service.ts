@@ -78,6 +78,25 @@ export class InicioAppService {
       );
   }
 
+  authToken2(frontToken: string): Observable<{ tokens: boolean }> {
+    const email = this.getEmail();
+    return this.httpClient
+      .post<{ tokens: boolean }>(`${this.APP_SERVER}/authToken2`, {
+        token: frontToken,
+        email,
+      })
+      .pipe(
+        tap((res) => {
+          if (res.tokens) {
+            console.log('Los tokens coinciden');
+          } else {
+            this.toast.error('Token incorrecto');
+            console.log('Los tokens no coinciden');
+          }
+        })
+      );
+  }
+
   reenviarToken(email: string): Observable<any> {
     if (!email) {
       email = this.getEmail();
