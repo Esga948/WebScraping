@@ -68,6 +68,7 @@ export class PassTokenComponent implements OnInit {
     });
   }
 
+  /*
   sendToken() {
     this.inicioAppService.reenviarToken("")
     .subscribe(
@@ -78,5 +79,5 @@ export class PassTokenComponent implements OnInit {
         this.toast.error(err.error.msj || 'Error desconocido');
       }
     );
-  }
+  }*/
 }

@@ -21,6 +21,7 @@ app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
 
 //Ejecutar el script de python
+/*
 const python = spawn('python', ['./webScraping.py']);
 // Maneja eventos de salida y error
 python.stdout.on('data', (data) => {
@@ -34,7 +35,7 @@ python.stderr.on('data', (data) => {
 python.on('close', (code) => {
   console.log(`El script se ha ejecutado con código ${code}`);
 });
-
+*/
 //permiso para usar credenaciales de acceso desde el forntend
 app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Credentials", "true");

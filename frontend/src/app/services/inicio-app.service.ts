@@ -61,11 +61,9 @@ export class InicioAppService {
   }
 
   authToken(frontToken: string): Observable<{ tokens: boolean }> {
-    const email = this.getEmail();
-
+    //const email = this.getEmail();
     return this.httpClient
       .post<{ tokens: boolean }>(`${this.APP_SERVER}/authToken`, {
-        email,
         token: frontToken,
       })
       .pipe(
@@ -90,9 +88,23 @@ export class InicioAppService {
     });
   }
 
+  reenviarTokenAuth(): void {
+    this.httpClient.post(`${this.APP_SERVER}/reenviarTokenAuth`, {}).subscribe(
+      () => {
+        this.toast.info('Token enviado');
+      },
+      (err) => {
+        this.toast.error(err.error.msj || 'Error desconocido');
+      }
+    );
+  }
+
   resetPass(newPass: string): Observable<any> {
     var email = this.getEmail();
-    return this.httpClient.post(`${this.APP_SERVER}/resetPass`, { email, newPass: newPass});
+    return this.httpClient.post(`${this.APP_SERVER}/resetPass`, {
+      email,
+      newPass: newPass,
+    });
   }
 
   getCollections(): Observable<string[]> {

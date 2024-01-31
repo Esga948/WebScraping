@@ -3,6 +3,7 @@ const { trackSchema } = require("../bdModel.js");
 
 var apiController = {};
 
+//funcion para conseguir el nombre de los generos
 apiController.getCollections = function (req, res) {
   try {
     mongoose.connection.db
@@ -31,9 +32,11 @@ apiController.getCollections = function (req, res) {
   }
 };
 
+//Funcion para conseguir el nombre de las canciones por cada genero
 apiController.datsT = async function (req, res) {
   var collectionName = req.params.collectionName;
   try {
+    //Creamos el modelo para cada tabla 
     var CollectionModel = mongoose.model(collectionName, trackSchema, collectionName);
     CollectionModel.find()
       .then((tracks) => {

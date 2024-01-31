@@ -53,22 +53,23 @@ usuarioAppController.createUser = async function (req, res) {
     token: token,
   };
 
+  this.newUserApp = newUserApp;
+  this.token = token;
   try {
     const user = await UserModel.findOne({ email: newUserApp.email });
     if (user) {
-      console.error("Ya existe un usuario con ese email");
       return res
         .status(409)
         .json({ msj: "Ya existe un usuario con ese email" });
     } else {
-      const user = UserModel.create(newUserApp);
+      //const user = UserModel.create(newUserApp);
       const expiresIn = 24 * 60 * 60;
-      const aToken = jwt.sign({ id: user.id }, secretKey, {
+      const aToken = jwt.sign({}, secretKey, {
         expiresIn: expiresIn,
       });
       const dataUser = {
-        name: user.name,
-        email: user.email,
+        name: newUserApp.name,
+        email: newUserApp.email,
         aToken: aToken,
         expiresIn: expiresIn,
       };
@@ -103,6 +104,20 @@ usuarioAppController.reenviarCorreo = async function (req, res) {
 
       return res.json({ msj: "Token enviado" });
     }
+  } catch (error) {
+    console.error("Error: " + err);
+    return res.status(500).json({ msj: "Error del servidor" });
+  }
+};
+
+usuarioAppController.reenviarCorreoAuth = async function (req, res) {
+  const token = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+  this.token = token;
+  newUserApp = this.newUserApp;
+
+  try {
+    enviarCorreo(newUserApp.email, token);
+    return res.json({ msj: "Token enviado" });
   } catch (error) {
     console.error("Error: " + err);
     return res.status(500).json({ msj: "Error del servidor" });
@@ -149,17 +164,14 @@ usuarioAppController.loginAppUser = async (req, res, next) => {
 //verificar que el token es igual al que se ha enviado
 usuarioAppController.authToken = async function (req, res) {
   const front = req.body.token;
-  const email = req.body.email;
-
+  //const email = req.body.email;
   try {
-    const user = await UserModel.findOne({ email: email });
-    if (!user) {
-      console.error("Usuario no encontrado");
-      return res.status(404).json({ msj: "Usuario no encontrado" });
-    } else {
-      const tokens = front === user.token;
-      return res.json({ tokens });
+    const tokens = front == this.token;
+    if (tokens) {
+      this.newUserApp.token = this.token;
+      UserModel.create(this.newUserApp);
     }
+    return res.json({ tokens });
   } catch (error) {
     console.error("Error: " + error);
     return res.status(500).json({ msj: "Error del servidor" });

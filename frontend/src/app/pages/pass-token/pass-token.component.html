@@ -6,8 +6,12 @@
         <form #frmPass="ngForm" class="form" (ngSubmit)="onMail(frmPass)">
             <p><input type="email" name="email" placeholder="Email" ngModel required /></p>
             <div class="esconder" *ngIf="!mostrarDiv">
-                <p><input type="submit" value="Send" /></p>
+                <p><input type="submit" value="Send Token" /></p>
             </div>
+            <div class="contenido_escondido" *ngIf="mostrarDiv">
+                <p><input type="submit" value="Resend Token" /></p>
+            </div>
+
         </form>
 
         <div class="contenido_escondido" *ngIf="mostrarDiv">
@@ -17,8 +21,6 @@
                 <p><input type="password" name="password2" placeholder="password" ngModel required /></p>
                 <p><input type="submit" value="Change password" /></p>
             </form>
-
-            <button button id="btn" (click)="sendToken()">Resend token</button>
         </div>
     </div>
 </div>

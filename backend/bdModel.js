@@ -23,7 +23,7 @@ userSchema.statics = {
 };
 const UserModel = mongoose.model("Users", userSchema);
 
-//Define el modelo para las canciones
+//Define el schema para las canciones
 const trackSchema = new mongoose.Schema({
   _id: String,
   imagen: String,
