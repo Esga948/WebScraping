@@ -1,14 +1,26 @@
-.info_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: nowrap;
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-//Esto hace que cada div ocupe la mitad de la página 
-.form {
-    flex: 1;
-    max-width: 50%;
+.header {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.info_container {
+    max-width: 1000px;
+    height: 100%; // Asegúrate de que el contenedor tenga una altura
+    margin: 0 auto; // Centra el contenedor horizontalmente
+
+    display: flex;
+    justify-content: space-between;
+    /* Añade este estilo para separar las columnas */
+    margin-bottom: 20px;
+    /* Espacio entre las filas de info_container */
+
 }
 
 .fr {
@@ -18,10 +30,27 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-  
+
 }
 
+.form input[type="submit"].sub{
+    margin-top: 3%;
+    max-width: 70%;
+}
+.form input[type="submit"].change {
+    margin-top: 2%;
 
-img{
-    object-fit: cover;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn,
+.btnC {
+    flex: 1;
+    margin-top: 4%;
+    margin-right: 10px;
+    margin-left: 10px;
 }

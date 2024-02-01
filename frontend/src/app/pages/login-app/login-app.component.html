@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="header">Log in</h2>
+  <h2 class="header">Iniciar Sesión</h2>
 
   <div class="info_container">
     <form #frmLogin="ngForm" class="form" (ngSubmit)="onLogin(frmLogin)">
@@ -7,8 +7,9 @@
       <p><input type="password" name="password" placeholder="Password" ngModel required /></p>
       <div class="link">¿Has olvidado tu contraseña? <a href="/passToken">Reset password</a></div>
 
-      <div class="link">¿Aún no tienes cuenta? <a href="/register">Register</a></div>
       <p><input type="submit" value="Log in" /></p>
+      <div class="link1">¿Aún no tienes cuenta? <a href="/register">Register</a></div>
+
     </form>
   </div>
 </div>

@@ -7,12 +7,9 @@ const { UserModel } = require("../bdModel.js");
 
 var usuarioAppController = {};
 
-//funcion para crear el usuario y guardarlo en la base de datos
+//Funcion para crear el usuario y guardarlo en la base de datos
 usuarioAppController.createUser = async function (req, res) {
-  var userId = req.params.userId;
-  req.session.userId = userId;
-  var salt = bcrypt.genSaltSync(10);
-
+  const salt = bcrypt.genSaltSync(10);
   const token = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
 
   var newUserApp = {
@@ -56,7 +53,7 @@ usuarioAppController.createUser = async function (req, res) {
   }
 };
 
-//funcion para iniciar sesion y comprobaciones
+//Funcion para iniciar sesion y comprobaciones
 usuarioAppController.loginAppUser = async (req, res, next) => {
   const userData = {
     email: req.body.email,
@@ -93,6 +90,7 @@ usuarioAppController.loginAppUser = async (req, res, next) => {
   }
 };
 
+//Funcion para enviar el correo electronico
 function enviarCorreo(email, token) {
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -163,7 +161,7 @@ usuarioAppController.reenviarCorreoAuth = async function (req, res) {
   }
 };
 
-//verificar que el token guardado en el back es igual al que se ha enviado
+//Verificar que el token guardado en el back es igual al que se ha enviado
 usuarioAppController.authToken = async function (req, res) {
   const front = req.body.token;
   //const email = req.body.email;
@@ -180,7 +178,7 @@ usuarioAppController.authToken = async function (req, res) {
   }
 };
 
-//verificar que el token de la base de datos es igual al que se ha enviado
+//Verificar que el token de la base de datos es igual al que se ha enviado
 usuarioAppController.authToken2 = async function (req, res) {
   const front = req.body.token;
   const email = req.body.email;
@@ -232,4 +230,27 @@ usuarioAppController.resetPass = async function (req, res) {
   }
 };
 
+//Funcion para cambiar el nombre del usuario
+usuarioAppController.changeName = async function (req, res) {
+  const email = req.body.email;
+  const newName = req.body.newName;
+
+  try {
+    await UserModel.findOneAndUpdate(
+      { email: email },
+      { $set: { name: newName } },
+      { new: true }
+    );
+
+    res.json({ msj: "Nombre actualizado" });
+  } catch (error) {
+    console.log("error " + error);
+    res.status(409).json({ message: "Error al actualizar el nombre" });
+  }
+};
+
+usuarioAppController.logOut = function (req, res) {
+  this.newUserApp = "";
+  this.token = "";
+};
 module.exports = usuarioAppController;

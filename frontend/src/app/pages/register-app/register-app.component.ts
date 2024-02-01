@@ -15,9 +15,13 @@ export class RegisterAppComponent implements OnInit {
   ngOnInit(): void {}
 
   onRegister(form: NgForm): void {
-    this.inicioAppService.registerApp(form.value).subscribe(() => {
-      this.toast.info('Token enviado');
-      this.router.navigate(['/authToken'])
-    });
+    if (form.valid) {
+      this.inicioAppService.registerApp(form.value).subscribe(() => {
+        this.toast.info('Token enviado');
+        this.router.navigate(['/authToken'])
+      });
+    } else {
+      this.toast.error('Complete todos los campos para continuar');
+    }
   }
 }

@@ -43,41 +43,30 @@ export class PassTokenComponent implements OnInit {
     var pass = form1.value.password;
     var pass2 = form1.value.password2;
 
-    this.inicioAppService.authToken2(token).subscribe((res) => {
-      if (res.tokens) {
-        if (pass == '' || pass2 == '') {
-          this.toast.error('Introduzca la contraseña dos veces');
-        } else {
-          if (pass === pass2) {
-            this.inicioAppService.resetPass(pass)    
-            .subscribe(
-              () => {
-                this.toast.info('Contraseña cambiada');
-                this.router.navigate(['/login'])
-              },
-              (err) => {
-                this.toast.error(err.error.msj || 'Error desconocido');
-              }
-            );
-        
+    if (form1.valid) {
+      this.inicioAppService.authToken2(token).subscribe((res) => {
+        if (res.tokens) {
+          if (pass == '' || pass2 == '') {
+            this.toast.error('Introduzca la contraseña dos veces');
           } else {
-            this.toast.error('Las contraseñas no coinciden');
+            if (pass === pass2) {
+              this.inicioAppService.resetPass(pass).subscribe(
+                () => {
+                  this.toast.info('Contraseña cambiada');
+                  this.router.navigate(['/login']);
+                },
+                (err) => {
+                  this.toast.error(err.error.msj || 'Error desconocido');
+                }
+              );
+            } else {
+              this.toast.error('Las contraseñas no coinciden');
+            }
           }
         }
-      }
-    });
+      });
+    } else {
+      this.toast.error('Complete todos los campos para continuar');
+    }
   }
-
-  /*
-  sendToken() {
-    this.inicioAppService.reenviarToken("")
-    .subscribe(
-      () => {
-        this.toast.info('Token enviado');
-      },
-      (err) => {
-        this.toast.error(err.error.msj || 'Error desconocido');
-      }
-    );
-  }*/
 }

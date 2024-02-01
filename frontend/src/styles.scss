@@ -109,12 +109,60 @@ body {
   border-color: #05a;
 }
 
-#btn {
+.btn {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.85em;
   background: #28d;
   border-color: transparent;
   color: #fff;
   cursor: pointer;
+}
 
+.btn:hover {
+  background: #17c;
+}
+
+.btn:focus {
+  border-color: #05a;
+}
+
+.btnC {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.85em;
+  background: rgb(221, 34, 34);
+  border-color: transparent;
+  color: #000000;
+  cursor: pointer;
+
+}
+
+.btnC:hover {
+  background: rgb(204, 17, 17);
+}
+
+.btnC:focus {
+  border-color: rgb(170, 0, 0);
+}
+
+.link, .link1{
+  margin: 12px; 
+  font-family: inherit;
+  font-size: 0.85em;
+  margin-top: 0;
 }
 
 .toast-error {

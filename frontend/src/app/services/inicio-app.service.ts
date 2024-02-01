@@ -136,6 +136,23 @@ export class InicioAppService {
     );
   }
 
+  changeName(newName: string, email: string): void {
+    this.httpClient
+      .post(`${this.APP_SERVER}/changeName`, {
+        email: email,
+        newName: newName,
+      })
+      .subscribe(
+        (resp) => {
+          this.toast.info("El nombre se ha actualizado");
+        },
+        (err) => {
+          this.toast.error(err.error.msj || 'Error desconocido');
+        }
+      );
+    this.saveName(newName);
+  }
+
   logout(): void {
     this.token = '';
     this.email = '';

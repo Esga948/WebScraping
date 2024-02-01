@@ -1,15 +1,15 @@
 <div class="container">
 
-    <h2 class="header">Reset password</h2>
+    <h2 class="header">Cambiar Contraseña</h2>
     <div class="info_container">
 
         <form #frmPass="ngForm" class="form" (ngSubmit)="onMail(frmPass)">
             <p><input type="email" name="email" placeholder="Email" ngModel required /></p>
             <div class="esconder" *ngIf="!mostrarDiv">
-                <p><input type="submit" value="Send Token" /></p>
+                <p><input type="submit" value="Enviar Token" /></p>
             </div>
             <div class="contenido_escondido" *ngIf="mostrarDiv">
-                <p><input type="submit" value="Resend Token" /></p>
+                <p><input type="submit" value="Reenviar Token" /></p>
             </div>
 
         </form>
@@ -17,9 +17,9 @@
         <div class="contenido_escondido" *ngIf="mostrarDiv">
             <form #frmPass1="ngForm" class="form" (ngSubmit)="onPass(frmPass1)">
                 <p><input type="text" name="token" placeholder="Token" ngModel required /></p>
-                <p><input type="password" name="password" placeholder="password" ngModel required /></p>
-                <p><input type="password" name="password2" placeholder="password" ngModel required /></p>
-                <p><input type="submit" value="Change password" /></p>
+                <p><input type="password" name="password" placeholder="Contraseña" ngModel required /></p>
+                <p><input type="password" name="password2" placeholder="Contraseña" ngModel required /></p>
+                <p><input type="submit" value="Cambiar contraseña" /></p>
             </form>
         </div>
     </div>
