@@ -2,11 +2,11 @@
 
 <div class="info_container">
     <div class="form">
-        <form class="fr" action="/subir-imagen" method="post" enctype="multipart/form-data">
+        <form #frmImag="ngForm" class="fr" (ngSubmit)="onImag(frmImag)">
             <!-- Utiliza un label con una imagen y un input oculto -->
             <label for="imagen" style="cursor: pointer;">
-                <img src="{{imag}}" alt="Seleccionar imagen" width="250" height="250">
-                <input type="file" name="imagen" id="imagen" accept="image/*" style="display: none;" required>
+                <img src="{{imag}}" alt="Seleccionar imagen" width="250" height="250" style="border-radius: 50%">
+                <input type="file" name="imagen" id="imagen" accept="image/*" style="display: none;" (change)="onFileChange($event)" required>
             </label>
 
             <input type="submit" class="sub" value="Guardar imagen" />
@@ -31,8 +31,8 @@
     <form #frmPass="ngForm" class="form" (ngSubmit)="onPass(frmPass)">
         <p><input type="password" name="password" placeholder="Contraseña" ngModel required /></p>
         <div class="link">¿No recuerdas tu contraseña? Hazlo a través de un <a href="/passToken">token</a></div>
-        <p><input type="pass" name="pass" placeholder="Contraseña nueva" ngModel required /></p>
-        <p><input type="pass" name="pass" placeholder="Contraseña nueva" ngModel required /></p>
+        <p><input type="password" name="pass" placeholder="Contraseña nueva" ngModel required /></p>
+        <p><input type="password" name="pass2" placeholder="Contraseña nueva" ngModel required /></p>
 
         <p><input type="submit" class="change" value="Cambiar" /></p>
     </form>

@@ -126,6 +126,25 @@ export class InicioAppService {
     });
   }
 
+  comparePass(pass: string): Observable<{ comp: boolean }> {
+    var email = this.getEmail();
+    return this.httpClient
+      .post<{ comp: boolean }>(`${this.APP_SERVER}/comparePass`, {
+        pass: pass,
+        email,
+      })
+      .pipe(
+        tap((res) => {
+          if (res.comp) {
+            console.log('Contraseña actual correcta');
+          } else {
+            this.toast.error('Contraseña actual incorrecta');
+            console.log('Contraseña actual incorrecta');
+          }
+        })
+      );
+  }
+
   getCollections(): Observable<string[]> {
     return this.httpClient.get<string[]>(`${this.APP_SERVER}/getCollections`);
   }
@@ -144,13 +163,29 @@ export class InicioAppService {
       })
       .subscribe(
         (resp) => {
-          this.toast.info("El nombre se ha actualizado");
+          this.toast.info('El nombre se ha actualizado');
         },
         (err) => {
           this.toast.error(err.error.msj || 'Error desconocido');
         }
       );
     this.saveName(newName);
+  }
+
+  saveImag(formData: FormData): void {
+    var email = this.getEmail();
+    formData.append('email', email);
+
+    this.httpClient
+      .post(`${this.APP_SERVER}/saveImag`, formData)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   logout(): void {

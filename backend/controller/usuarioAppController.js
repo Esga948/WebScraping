@@ -18,6 +18,7 @@ usuarioAppController.createUser = async function (req, res) {
     password: bcrypt.hashSync(req.body.password, salt),
     rol: 2,
     token: token,
+    imag: '../assets/persona.png'
   };
 
   this.newUserApp = newUserApp;
@@ -198,6 +199,26 @@ usuarioAppController.authToken2 = async function (req, res) {
   }
 };
 
+//comparar contraseña del fornt con la de la base de datos
+usuarioAppController.comparePass = async function (req, res) {
+  const front = req.body.pass;
+  const email = req.body.email;
+
+  try {
+    const user = await UserModel.findOne({ email: email });
+    if (!user) {
+      console.error("Usuario no encontrado");
+      return res.status(404).json({ msj: "Usuario no encontrado" });
+    } else {
+      const comp = bcrypt.compareSync(front, user.password);
+      return res.json({ comp });
+    }
+  } catch (error) {
+    console.error("Error: " + error);
+    return res.status(500).json({ msj: "Error del servidor" });
+  }
+};
+
 //Cambiar la contraseña
 usuarioAppController.resetPass = async function (req, res) {
   const email = req.body.email;
@@ -249,8 +270,10 @@ usuarioAppController.changeName = async function (req, res) {
   }
 };
 
+//Funcion para cerar sesion
 usuarioAppController.logOut = function (req, res) {
   this.newUserApp = "";
   this.token = "";
 };
+
 module.exports = usuarioAppController;

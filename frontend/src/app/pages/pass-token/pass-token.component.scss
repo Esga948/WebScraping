@@ -1,0 +1,26 @@
+.info_container {
+    margin-bottom: 20px;
+}
+
+.contenido_escondido {
+    background: #f7f8ff;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info_container input[type="submit"] {
+    background: #28d;
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .info_container input[type="submit"]:hover {
+    background: #17c;
+  }
+  
+  .info_container input[type="submit"]:focus {
+    border-color: #05a;
+  }
+  

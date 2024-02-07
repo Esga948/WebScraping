@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
     password: String,
     rol: Number,
     token: String,
+    imag: String,
   },
   { collection: "Users" }
 );
