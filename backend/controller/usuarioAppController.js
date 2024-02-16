@@ -18,7 +18,6 @@ usuarioAppController.createUser = async function (req, res) {
     password: bcrypt.hashSync(req.body.password, salt),
     rol: 2,
     token: token,
-    imag: '../assets/persona.png'
   };
 
   this.newUserApp = newUserApp;

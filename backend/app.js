@@ -4,12 +4,13 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const routes = require("./routes/routes");
+const path = require("path");
 
 const app = express();
 const router = express.Router();
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
-const { spawn } = require('child_process');
+const { spawn } = require("child_process");
 
 //configuracion base de datos
 var port = "8080";
@@ -19,6 +20,8 @@ const url =
 //middleware para parsear solicitudes JSON y URL encoded
 app.use(bodyParserJSON);
 app.use(bodyParserURLEncoded);
+
+app.use("/imag", express.static(path.join(__dirname, "imag")));
 
 //Ejecutar el script de python
 /*
@@ -82,4 +85,3 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Error!");
 });
-

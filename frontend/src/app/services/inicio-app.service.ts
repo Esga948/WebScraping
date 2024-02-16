@@ -6,6 +6,7 @@ import { Track } from '../models/track';
 import { tap } from 'rxjs';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Injectable()
 export class InicioAppService {
@@ -14,6 +15,7 @@ export class InicioAppService {
   private token: string = '';
   private name: string = '';
   private email: string = '';
+  private imag: string = '';
   constructor(private httpClient: HttpClient, private toast: ToastrService) {}
 
   registerApp(user: UserApp): Observable<JwtResp> {
@@ -172,20 +174,16 @@ export class InicioAppService {
     this.saveName(newName);
   }
 
-  saveImag(formData: FormData): void {
+  saveImag(formData: FormData) {
     var email = this.getEmail();
     formData.append('email', email);
 
-    this.httpClient
-      .post(`${this.APP_SERVER}/saveImag`, formData)
-      .subscribe(
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+    return this.httpClient.post(`${this.APP_SERVER}/saveImag`, formData);
+  }
+
+  getU(): Observable<string> {
+    var email = this.getEmail();
+    return this.httpClient.get<string>(`${this.APP_SERVER}/getU/${email}`);
   }
 
   logout(): void {

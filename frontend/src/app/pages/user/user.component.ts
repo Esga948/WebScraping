@@ -11,19 +11,26 @@ import { ToastrService } from 'ngx-toastr';
 export class UserComponent implements OnInit {
   userAppName: string = '';
   userAppEmail: string = '';
+  imag: string = '';
   userAppPass: string = 'userPass';
-
-  imag: string = '../assets/persona.png';
+  file: File | null = null;
 
   constructor(
     private inicioAppService: InicioAppService,
     private toast: ToastrService
   ) {}
-  file: File | null = null;
 
   ngOnInit(): void {
     this.userAppName = this.inicioAppService.getName();
     this.userAppEmail = this.inicioAppService.getEmail();
+    this.inicioAppService.getU().subscribe(
+      (res) => {
+        this.imag = `http://localhost:8080/${res}`;
+      },
+      (err) => {
+        this.imag = '../assets/persona.png';
+      }
+    );
   }
 
   onFileChange(event: Event) {
@@ -46,11 +53,29 @@ export class UserComponent implements OnInit {
   }
 
   onImag(form: NgForm) {
-    if (this.file) {
+    if (form.valid && this.file) {
       const formData = new FormData();
       formData.append('imagen', this.file);
 
-      this.inicioAppService.saveImag(formData);
+      this.inicioAppService.saveImag(formData).subscribe(
+        (res) => {
+          this.toast.info('Imagen guardada');
+          this.inicioAppService.getU().subscribe(
+            (res) => {
+              this.imag = `http://localhost:8080/${res}`;
+            },
+            (err) => {
+              console.log('Error ', err);
+            }
+          );
+        },
+        (err) => {
+          this.toast.error('Error al guardar la imagen');
+          console.log('Error ', err);
+        }
+      );
+    } else {
+      this.toast.error('Introduzca una imagen');
     }
   }
 
