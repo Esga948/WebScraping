@@ -10,7 +10,9 @@ const app = express();
 const router = express.Router();
 const bodyParserJSON = bodyParser.json();
 const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
-const { spawn } = require("child_process");
+
+//Habilitar el corse hablitar el acceso desde alguna url (localhost:8080)
+app.use(cors());
 
 //configuracion base de datos
 var port = "8080";
@@ -44,9 +46,6 @@ app.all("*", function (req, res, next) {
   res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
-
-//Habilitar el corse hablitar el acceso desde alguna url (localhost:8080)
-app.use(cors());
 
 //Sistema de sesion
 app.use(

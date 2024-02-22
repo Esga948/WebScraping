@@ -28,14 +28,39 @@ imagController.saveImag = async function (req, res) {
       try {
         const relativePath = "imag/" + req.file.originalname;
 
-        await UserModel.findOneAndUpdate(
-          { email: req.body.email },
-          { $set: { imag: relativePath } }
-        );
-
-        return res.json(relativePath);
+        const user = await UserModel.findOne({ email: req.body.email });
+        const exist = await UserModel.findOne({ imag: relativePath });
+        if (exist) {
+          return res.status(409).json({
+            msj: "Ya existe un archivo con ese nombre, cambiele el nombre para poder subirlo",
+          });
+        }
+        if (user.imag != "") {
+          fs.unlink(path.join(process.cwd(), user.imag), async (err) => {
+            if (err) {
+              console.log("Error al borrar la antigua imagen");
+              console.log(err);
+              return res.status(408).json({
+                msj: "Error al borrar la antigua imagen",
+              });
+            } else {
+              console.log("Imagen borrada correctamente");
+              await UserModel.findOneAndUpdate(
+                { email: user.email },
+                { $set: { imag: relativePath } }
+              );
+              return res.json(relativePath);
+            }
+          });
+        } else {
+          await UserModel.findOneAndUpdate(
+            { email: user.email },
+            { $set: { imag: relativePath } }
+          );
+          return res.json(relativePath);
+        }
       } catch (error) {
-        console.log("Error al guardar la imagen: ", error);
+        console.log("Error: ", error);
       }
     }
   });

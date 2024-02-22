@@ -24,8 +24,17 @@ export class UserComponent implements OnInit {
     this.userAppName = this.inicioAppService.getName();
     this.userAppEmail = this.inicioAppService.getEmail();
     this.inicioAppService.getU().subscribe(
-      (res) => {
-        this.imag = `http://localhost:8080/${res}`;
+      async (res) => {
+        if (res == '') {
+          this.imag = '../assets/persona.png';
+        } else {
+          const response = await fetch('http://localhost:8080/' + res);
+          if (!response.ok) {
+            this.imag = '../assets/persona.png';
+          } else {
+            this.imag = `http://localhost:8080/${res}`;
+          }
+        }
       },
       (err) => {
         this.imag = '../assets/persona.png';
@@ -70,8 +79,17 @@ export class UserComponent implements OnInit {
           );
         },
         (err) => {
-          this.toast.error('Error al guardar la imagen');
-          console.log('Error ', err);
+          if (err.status === 409) {
+            this.toast.error(
+              'Ya existe un archivo con ese nombre, cambiele el nombre para poder subirlo'
+            );
+            console.log('Error ', err);
+          } else if (err.status === 408) {
+            this.toast.error('Error en el proceso, vuelve a intentarlo');
+          } else {
+            this.toast.error('Error al guardar la imagen');
+            console.log('Error ', err);
+          }
         }
       );
     } else {
