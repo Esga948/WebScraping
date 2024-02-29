@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showNavbar = !(
-          event.urlAfterRedirects.includes('home') ||
           event.urlAfterRedirects.includes('api') ||
           event.urlAfterRedirects.includes('user')
         );

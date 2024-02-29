@@ -1,0 +1,20 @@
+.dropdown-menu {
+  /* Cambia el color de fondo del menú desplegable */
+  background-color: #f3e6ff;
+}
+
+.dropdown-item {
+  /* Cambia el color y el tipo de letra de los elementos del menú desplegable */
+  color: #343a40;
+  font-family: Arial, sans-serif;
+}
+
+.dropdown-item:hover {
+  /* Cambia el color de fondo de los elementos del menú desplegable al pasar el ratón por encima */
+  background-color: #e5cafd;
+}
+
+.dropdown-item.user-app-name:hover {
+  /* Cambia el color de fondo del elemento "userAppName" al pasar el ratón por encima */
+  background-color: #f3e6ff;
+}

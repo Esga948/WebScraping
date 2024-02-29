@@ -15,10 +15,7 @@ export class UserComponent implements OnInit {
   userAppPass: string = 'userPass';
   file: File | null = null;
 
-  constructor(
-    private inicioAppService: InicioAppService,
-    private toast: ToastrService
-  ) {}
+  constructor(private inicioAppService: InicioAppService, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.userAppName = this.inicioAppService.getName();

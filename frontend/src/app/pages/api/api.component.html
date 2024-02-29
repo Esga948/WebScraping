@@ -1,23 +1,17 @@
 <h2 class="header">Top Generos</h2>
 
-<div class="info_container">
-  <!--div class="user_info">
-    <h2>Datos Usuario</h2>
-
-    <p>Nombre: {{ userAppName }}</p>
-    <p>Email: {{ userAppEmail }}</p>
-  </div-->
-
-  <div class="generos" *ngFor="let genre of allTracksMap | keyvalue">
-    <h2>{{ genre.key }}</h2>
-    <div class="list_canciones">
-      <div class="cancion" *ngFor="let track of allTracksMap[genre.key]">
-        <img src="{{track.imagen}}" alt="Imagen cancion" style="width:175px;height:175px;;"><br>
-        {{ track.cancion }} <br> {{ track.artista }}
+<div class="generos" *ngFor="let genre of allTracks">
+  <h2 (click)="expanded(genre)">{{ genre.collectionName }}</h2>
+  <div class="list_canciones" *ngIf="genre.expanded">
+    <div class="cancion" *ngFor="let track of genre.tracks">
+      <div class="imag_cont">
+        <img src="{{track.imagen}}" alt="Imagen cancion">
       </div>
+      {{ track.cancion }} <br> {{ track.artista }}
     </div>
   </div>
+</div>
 
-  <div class="btn_logOut">
-    <button class="btn" (click)="logout()">Salir</button>
-  </div>
+<div class="btn_logOut">
+  <button class="btn" (click)="logout()">Salir</button>
+</div>
