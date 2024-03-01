@@ -1,26 +1,27 @@
 .info_container {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .contenido_escondido {
-    background: #f7f8ff;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
+  background: #f7f8ff;
+  width: 100%;
+  height: auto; // Ajusta la altura al contenido
+  box-sizing: border-box;
+  margin-bottom: 30px;
 }
 
 .info_container input[type="submit"] {
-    background: #28d;
+    background: #3f3db3;
     border-color: transparent;
     color: #fff;
     cursor: pointer;
   }
   
   .info_container input[type="submit"]:hover {
-    background: #17c;
+    background: #3937a1;
   }
   
   .info_container input[type="submit"]:focus {
-    border-color: #05a;
+    border-color: #3937a1;
   }
   

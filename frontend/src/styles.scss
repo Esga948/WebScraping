@@ -2,11 +2,12 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 
 .navbar {
+  background-color: #170b1f;
   height: 60px;
 }
 
 body {
-  background: rgb(173, 195, 218);
+  background: #432356;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -20,6 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 10px;
 }
 
 /* Reset top and bottom margins from certain elements */
@@ -35,11 +37,11 @@ body {
   margin-right: auto;
   margin-left: auto;
   border: 12px solid transparent;
-  border-bottom-color: #28d;
+  border-bottom-color: #3f3db3;
 }
 */
 .header {
-  background: #28d;
+  background: #3f3db3;
   padding: 20px;
   font-size: 1.4em;
   font-weight: normal;
@@ -53,14 +55,14 @@ body {
 }
 
 .form {
-  background: #f7f8ff;
+  background: #E0D9F6;
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .info_container {
-  background: #f7f8ff;
+  background: #E0D9F6;
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
@@ -81,6 +83,8 @@ body {
   outline: 0;
   font-family: inherit;
   font-size: 0.95em;
+  border-radius: 10px;
+
 }
 
 .form input[type="text"],
@@ -99,19 +103,21 @@ body {
 }
 
 .form input[type="submit"] {
-  background: #28d;
+  background: #3f3db3;
   border-color: transparent;
   color: #fff;
+  border-radius: 1000px;
   cursor: pointer;
 }
 
 .form input[type="submit"]:hover {
-  background: #17c;
+  background: #3937a1;
+  color: #fff
 }
 
 // Buttons' focus effect 
 .form input[type="submit"]:focus {
-  border-color: #05a;
+  border-color: #3937a1;
 }
 
 .btn {
@@ -124,18 +130,20 @@ body {
   outline: 0;
   font-family: inherit;
   font-size: 0.85em;
-  background: #28d;
+  background: #3f3db3;
   border-color: transparent;
   color: #fff;
+  border-radius: 1000px;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: #17c;
+  background: #3937a1;
+  color: #fff;
 }
 
 .btn:focus {
-  border-color: #05a;
+  border-color: #3937a1;
 }
 
 .btnC {
@@ -162,8 +170,9 @@ body {
   border-color: rgb(170, 0, 0);
 }
 
-.link, .link1{
-  margin: 12px; 
+.link,
+.link1 {
+  margin: 12px;
   font-family: inherit;
   font-size: 0.85em;
   margin-top: 0;
@@ -175,8 +184,21 @@ body {
   font-size: 20px;
 }
 
-.body-api{
-  background: #f7f8ff;
+.body-api {
+  background: #E0D9F6;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+//GRANATE #661526
+//LILA FUERTE #690759
+//AZUL GRIS #517B9D
+//LILA #432356
