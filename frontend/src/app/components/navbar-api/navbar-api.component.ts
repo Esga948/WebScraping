@@ -15,14 +15,27 @@ export class NavbarApiComponent implements OnInit {
 
   ngOnInit(): void {
     this.userAppName = this.inicioAppService.getName();
+    if (!this.userAppName) {
+      this.userAppName = "Nombre Usuario"
+    }
 
-    this.inicioAppService.getU().subscribe((res) => {
-      if (res == '') {
-        this.imag = '../assets/persona.png';
-      } else {
-        this.imag = `http://localhost:8080/${res}`;
+    this.inicioAppService.getU().subscribe(
+      async (res) => {
+        if (res == '') {
+          this.imag = '../assets/persona.png';
+        } else {
+          const response = await fetch('http://localhost:8080/' + res);
+          if (!response.ok) {
+            this.imag = '../assets/persona.png';
+          } else {
+            this.imag = `http://localhost:8080/${res}`;
+          }
+        }
+      },
+      (err) => {
+        this.imag = '../assets/p.png';
       }
-    });
+    );
   }
 
   logout(): void {

@@ -4,26 +4,15 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse custom-bg" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="/register">Create user</a> <!-- Añadido text-white -->
         </li>
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="/login">Log in</a> <!-- Añadido text-white -->
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img [src]="imag" alt="Imagen de perfil" width="35" height="35" style="border-radius: 50%; border: 1px solid white">
+        <li class="nav-item ">
+          <a class="nav-link active text-white" aria-current="page" href="/login">Log in<img src="../assets/p.png" alt="Imagen de perfil" width="35" height="35" style="border-radius: 50%; margin-left: 15px;">
           </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li class="dropdown-item user-app-name text-white">{{ userAppName }}</li> <!-- Añadido text-white -->
-            <li><a class="dropdown-item text-white" href="/user">Mi cuenta</a></li> <!-- Añadido text-white -->
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-white" (click)="logout()">Log out</a></li> <!-- Añadido text-white -->
-          </ul>
-        </li>
+        </li >
       </ul>
     </div>
   </div>
