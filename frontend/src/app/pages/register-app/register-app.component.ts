@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InicioAppService } from 'src/app/services/inicio-app.service';
 import { NgForm } from '@angular/forms';
@@ -9,18 +9,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register-app.component.html',
   styleUrls: ['./register-app.component.scss'],
 })
-export class RegisterAppComponent implements AfterViewInit, OnInit {
-  @ViewChild('infoContainer') infoContainer!: ElementRef;
-  @ViewChild('myImage') myImage!: ElementRef;
+export class RegisterAppComponent implements OnInit {
   
   constructor(private inicioAppService: InicioAppService, private router: Router, private toast: ToastrService) {}
-  
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.myImage.nativeElement.style.height = this.infoContainer.nativeElement.offsetHeight + 'px';
-    });
-  }
-  
+    
   ngOnInit(): void {}
 
   onRegister(form: NgForm): void {

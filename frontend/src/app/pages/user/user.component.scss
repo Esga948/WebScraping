@@ -1,25 +1,8 @@
-body,
-html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+.container{
+    max-width: 850px;
 }
-
-.header {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
 .info_container {
-    max-width: 1000px;
-    margin: 0 auto; // Centra el contenedor horizontalmente
-
-    display: flex;
-    justify-content: space-between;
-    /* Añade este estilo para separar las columnas */
     margin-bottom: 20px;
-    /* Espacio entre las filas de info_container */
-
 }
 
 .fr {
@@ -65,4 +48,17 @@ html {
 .form p.label {
     padding-top: 10px;
     margin-bottom: 0px;
+}
+.sec_container {
+    padding-bottom: 100%; // Esto hace que la altura sea igual al ancho
+    overflow: hidden;
+
+    .form {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        // Aquí puedes agregar más estilos para el formulario
+    }
 }

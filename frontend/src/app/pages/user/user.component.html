@@ -1,41 +1,62 @@
-<h1 class="header">Información del Usuario</h1>
+<div class="container">
+    <h2 class="header">Información del Usuario</h2>
 
-<div class="info_container">
-    <div class="form">
-        <form #frmImag="ngForm" class="fr" (ngSubmit)="onImag(frmImag)" enctype="multipart/form-data">
-            <!-- Utiliza un label con una imagen y un input oculto -->
-            <label for="imagen" style="cursor: pointer;">
-                <img [src]="imag" alt="Seleccionar imagen" width="250" height="250" style="border-radius: 50%">
-                <input type="file" name="imagen" id="imagen" accept="image/*" style="display: none;" (change)="onFileChange($event)" required>
-            </label>
+    <div class="info_container">
 
-            <input type="submit" class="sub" value="Guardar imagen" />
-        </form>
-    </div>
+        <div class="row g-0">
+            <div class="col-md-6">
+                <div class="form">
+                    <form #frmImag="ngForm" class="fr" (ngSubmit)="onImag(frmImag)" enctype="multipart/form-data">
+                        <!-- Utiliza un label con una imagen y un input oculto -->
+                        <label for="imagen" style="cursor: pointer;">
+                            <img [src]="imag" alt="Seleccionar imagen" width="250" height="250"
+                                style="border-radius: 50%">
+                            <input type="file" name="imagen" id="imagen" accept="image/*" style="display: none;"
+                                (change)="onFileChange($event)" required>
+                        </label>
 
-    <div class="form">
-        <p class="label">Nombre:</p>
-        <p><input type="text" [(ngModel)]="userAppName"></p>
-        <p class="label">Email:</p>
-        <p><input type="email" [(ngModel)]="userAppEmail" readonly></p>
+                        <input type="submit" class="sub" value="Guardar imagen" style="margin-top: 15px;" />
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form">
+                    <p class="label">Nombre:</p>
+                    <p><input type="text" [(ngModel)]="userAppName"></p>
+                    <p class="label">Email:</p>
+                    <p><input type="email" [(ngModel)]="userAppEmail" readonly></p>
 
-        <div class="btn_container">
-            <button button class="btn" (click)="name()">Guardar cambios</button>
-            <button button class="btnC" (click)="cancel()">Cancelar</button>
+                    <div class="btn_container">
+                        <button button class="btn" (click)="name()">Guardar</button>
+                        <button button class="btnC" (click)="cancel()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<h1 class="header">Cambiar Contraseña</h1>
-<div class="info_container">
-    <form #frmPass="ngForm" class="form" (ngSubmit)="onPass(frmPass)">
-        <p><input type="password" name="password" placeholder="Contraseña" ngModel required /></p>
-        <div class="link">¿No recuerdas tu contraseña? Hazlo a través de un <a href="/passToken">token</a></div>
-        <p><input type="password" name="pass" placeholder="Contraseña nueva" ngModel required /></p>
-        <p><input type="password" name="pass2" placeholder="Contraseña nueva" ngModel required /></p>
+<div class="container">
+    <h2 class="header">Cambiar Contraseña</h2>
 
-        <p><input type="submit" class="change" value="Cambiar" /></p>
-    </form>
+    <div class="row g-0">
+        <!-- Columna para la imagen -->
+        <div class="col-md-6">
+            <img src="../assets/icon.jpg" class="img-fluid" alt="Imagen">
+        </div>
+        <div class="col-md-6">
+            <div class="info_container sec_container">
+                <form #frmPass="ngForm" class="form" (ngSubmit)="onPass(frmPass)">
+                    <p><input type="password" name="password" placeholder="Contraseña" ngModel required /></p>
+                    <div class="link">¿No recuerdas tu contraseña? Hazlo con un <a href="/passToken">token</a>
+                    </div>
+                    <p><input type="password" name="pass" placeholder="Contraseña nueva" ngModel required /></p>
+                    <p><input type="password" name="pass2" placeholder="Contraseña nueva" ngModel required />
+                    </p>
 
-
+                    <p><input type="submit" class="change" value="Cambiar" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

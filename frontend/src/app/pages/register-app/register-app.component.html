@@ -1,17 +1,19 @@
-<div class="container">
+<div class="container rounded-2">
   <h2 class="header">Crear Usuario</h2>
+
   <div class="row g-0">
     <!-- Columna para la imagen -->
     <div class="col-md-6">
-      <img src="../assets/icon.jpg" class="img-fluid rounded" id="myImage" alt="Imagen">
+      <img src="../assets/icon.jpg" class="img-fluid" alt="Imagen">
     </div>
     <!-- Columna para el formulario -->
     <div class="col-md-6">
-      <div class="info_container" id="infoContainer">
+      <div class="info_container">
         <form #frmRegister="ngForm" class="form" (ngSubmit)="onRegister(frmRegister)">
           <p><input type="text" name="name" placeholder="Nombre" ngModel required /></p>
           <p><input type="email" name="email" placeholder="Email" ngModel required /></p>
           <p><input type="password" name="password" placeholder="Contraseña" ngModel required /></p>
+
           <p><input type="submit" value="Registrar" /></p>
           <div class="link">Ya tienes cuenta? <a href="/login">Log in</a></div>
         </form>

@@ -52,6 +52,7 @@ body {
   /* Hace que el header tenga el mismo ancho que el contenedor */
   box-sizing: border-box;
   /* Asegura que el padding no afecte el ancho total */
+  
 }
 
 .form {
@@ -63,9 +64,9 @@ body {
 
 .info_container {
   background: #E0D9F6;
-  padding: 20px;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
 }
 
 // Every row inside .login-container is defined with p tags 
