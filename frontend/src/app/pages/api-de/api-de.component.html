@@ -1,1 +1,13 @@
-<p>api-de works!</p>
+<h2 class="header">Por Décadas</h2>
+
+<div class="generos" *ngFor="let genre of allTracks">
+  <h2 (click)="expanded(genre)">{{ genre.collectionName }}</h2>
+  <div class="list_canciones" *ngIf="genre.expanded">
+    <div class="cancion" *ngFor="let track of genre.tracks">
+      <div class="imag_cont">
+        <img src="{{track.imagen}}" alt="Imagen cancion">
+      </div>
+      {{ track.cancion }} <br> {{ track.artista }}
+    </div>
+  </div>
+</div>
