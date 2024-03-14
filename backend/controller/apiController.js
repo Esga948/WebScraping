@@ -6,25 +6,28 @@ var apiController = {};
 //funcion para conseguir el nombre de los generos
 apiController.getCollections = function (req, res) {
   try {
-    mongoose.connection.db
-      .listCollections()
+    mongoose.connection.db.collection("TopGeneros")
+      .find()
       .toArray()
-      .then((collections) => {
-        const collectionNames = collections.map(
-          (collection) => collection.name
-        );
+      .then((generos) => {
+        // Extraer solo los nombres de los géneros
+        const generoNames = generos.map((genero) => genero.genero);
 
-        // Filtrar las colecciones, excluyendo 'Users'
-        const filteredCollectionNames = collectionNames.filter(
-          (name) => name !== "Users"
-        );
+        mongoose.connection.db
+          .listCollections()
+          .toArray()
+          .then((collections) => {
+            const collectionNames = collections
+              .map((collection) => collection.name)
+              .filter((name) => generoNames.includes(name));
 
-        // Devolver solo los nombres de las colecciones
-        return res.json(filteredCollectionNames);
-      })
-      .catch((error) => {
-        console.error("Error al obtener la lista de colecciones:", error);
-        return res.status(408).json({ msj: "Error 408" });
+            // Devolver solo los nombres de las colecciones
+            return res.json(collectionNames);
+          })
+          .catch((error) => {
+            console.error("Error al obtener la lista de colecciones:", error);
+            return res.status(408).json({ msj: "Error 408" });
+          });
       });
   } catch (error) {
     console.error(error);
@@ -36,14 +39,21 @@ apiController.getCollections = function (req, res) {
 apiController.datsT = async function (req, res) {
   var collectionName = req.params.collectionName;
   try {
-    //Creamos el modelo para cada tabla 
-    var CollectionModel = mongoose.model(collectionName, trackSchema, collectionName);
+    //Creamos el modelo para cada tabla
+    var CollectionModel = mongoose.model(
+      collectionName,
+      trackSchema,
+      collectionName
+    );
     CollectionModel.find()
       .then((tracks) => {
         return res.json(tracks);
       })
       .catch((error) => {
-        console.error(`Error al consultar la colección ${collectionName}:`, error);
+        console.error(
+          `Error al consultar la colección ${collectionName}:`,
+          error
+        );
         return res.status(409).json({ msj: "Error 409" });
       });
   } catch (error) {

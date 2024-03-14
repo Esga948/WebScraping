@@ -17,7 +17,9 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.showNavbar = !(
           event.urlAfterRedirects.includes('api') ||
-          event.urlAfterRedirects.includes('user')
+          event.urlAfterRedirects.includes('user') ||
+          event.urlAfterRedirects.includes('apiHome')||
+          event.urlAfterRedirects.includes('apiDe')
         );
       }
     });

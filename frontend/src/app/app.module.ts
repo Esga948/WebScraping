@@ -17,6 +17,8 @@ import { ApiComponent } from './pages/api/api.component';
 import { NavbarApiComponent } from './components/navbar-api/navbar-api.component';
 import { UserComponent } from './pages/user/user.component';
 import { PassTokenComponent } from './pages/pass-token/pass-token.component';
+import { ApiHomeComponent } from './pages/api-home/api-home.component';
+import { ApiDeComponent } from './pages/api-de/api-de.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { PassTokenComponent } from './pages/pass-token/pass-token.component';
     NavbarApiComponent,
     UserComponent,
     PassTokenComponent,
+    ApiHomeComponent,
+    ApiDeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NoopAnimationsModule,
   ToastrModule.forRoot({

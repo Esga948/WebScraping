@@ -1,0 +1,54 @@
+h2.header{
+    margin-top: 30px;
+  }
+  .generos {
+    background-color: rgb(231, 210, 231);
+  }
+  
+  .generos h2 {
+    color: #ebecf3;
+  
+    background-color: rgb(179, 133, 179);
+    //background-color: indigo;
+  }
+  
+  .list_canciones {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px; // Espacio entre los elementos
+  
+    // Asegúrate de que los elementos hijos no se desborden
+    .cancion {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 10%;
+      margin-left: 10%;
+      margin-right: 10%;
+  
+      overflow: auto;
+      position: relative;
+  
+      .imag_cont {
+        position: relative;
+        width: 100%;
+        padding-bottom: 100%; // Esto hace que el div sea siempre cuadrado
+        overflow: hidden; // Esto asegura que la imagen no se salga del div
+        margin-bottom: 5%;
+  
+        img {
+          position: absolute;
+          object-fit: contain; // Esto hace que la imagen se escale para ajustarse al div, manteniendo su aspecto original
+          width: 100%;
+          height: 100%;
+          top: 50%; // Centra la imagen verticalmente
+          left: 50%; // Centra la imagen horizontalmente
+          transform: translate(-50%, -50%); // Ajusta la posición de la imagen para que esté centrada
+        }
+      }
+    }
+  }
+  
+  
+  //separacion entre las letras y la imagen

@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse custom-bg" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+          <a class="nav-link active text-white" aria-current="page" href="/apiHome">Lo mas escuchado</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#">Lo mas escuchado</a>
+          <a class="nav-link active text-white" aria-current="page" href="/apiDe">Por decadas</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="/api">Top Generos</a>
@@ -21,7 +21,7 @@
             <img [src]="imag" alt="Imagen de perfil" width="35" height="35" style="border-radius: 50%; border: 2px solid white;">
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li class="dropdown-item user-app-name">{{ userAppName }}</li>
+            <li><a class="dropdown-item user-app-name" href="/user">{{ userAppName }}</a></li>
             <li><a class="dropdown-item" href="/user">Mi cuenta</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" (click)="logout()">Log out</a></li>

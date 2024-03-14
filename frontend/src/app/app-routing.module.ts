@@ -8,6 +8,8 @@ import { AuthTokenComponent } from './pages/auth-token/auth-token.component';
 import { ApiComponent } from './pages/api/api.component';
 import { UserComponent } from './pages/user/user.component';
 import { PassTokenComponent } from './pages/pass-token/pass-token.component';
+import { ApiHomeComponent } from './pages/api-home/api-home.component';
+import { ApiDeComponent } from './pages/api-de/api-de.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'api', component: ApiComponent },
   { path: 'user', component: UserComponent },
   { path: 'passToken', component: PassTokenComponent },
+  { path: 'apiHome', component: ApiHomeComponent },
+  { path: 'apiDe', component: ApiDeComponent},
   { path: '**', redirectTo: '/home' },
 ];
 
