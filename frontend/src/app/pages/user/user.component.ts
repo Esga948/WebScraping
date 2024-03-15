@@ -23,18 +23,18 @@ export class UserComponent implements OnInit {
     this.inicioAppService.getU().subscribe(
       async (res) => {
         if (res == '') {
-          this.imag = '../assets/persona.png';
+          this.imag = '../assets/p.png';
         } else {
           const response = await fetch('http://localhost:8080/' + res);
           if (!response.ok) {
-            this.imag = '../assets/persona.png';
+            this.imag = '../assets/p.png';
           } else {
             this.imag = `http://localhost:8080/${res}`;
           }
         }
       },
       (err) => {
-        this.imag = '../assets/persona.png';
+        this.imag = '../assets/p.png';
       }
     );
   }
@@ -110,8 +110,8 @@ export class UserComponent implements OnInit {
     if (form.valid) {
       this.inicioAppService.comparePass(password).subscribe((res) => {
         if (res.comp) {
-          if (pass == '' || pass2 == '') {
-            this.toast.error('Introduzca la contraseña dos veces');
+          if (pass == '' || pass2 == '' || pass == password || pass2 == password) {
+            this.toast.error('Introduzca la nueva contraseña dos veces, no puede ser igual a la antigua');
           } else {
             if (pass === pass2) {
               this.inicioAppService.resetPass(pass).subscribe(

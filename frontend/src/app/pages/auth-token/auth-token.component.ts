@@ -20,7 +20,7 @@ export class AuthTokenComponent implements OnInit {
     const token = form.value.token;
     this.inicioAppService.authToken(token).subscribe((res) => {
       if (res.tokens) {
-        this.router.navigate(['/api'])
+        this.router.navigate(['/apiHome'])
       }
     });
   }

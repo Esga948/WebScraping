@@ -22,11 +22,11 @@ export class NavbarApiComponent implements OnInit {
     this.inicioAppService.getU().subscribe(
       async (res) => {
         if (res == '') {
-          this.imag = '../assets/persona.png';
+          this.imag = '../assets/p.png';
         } else {
           const response = await fetch('http://localhost:8080/' + res);
           if (!response.ok) {
-            this.imag = '../assets/persona.png';
+            this.imag = '../assets/p.png';
           } else {
             this.imag = `http://localhost:8080/${res}`;
           }

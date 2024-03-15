@@ -17,7 +17,7 @@ export class ApiHomeComponent implements OnInit {
   }
 
   getInfo(): void {
-    const generos = ['Global Hits', 'TopWorldwide'];
+    const generos = ['Global Hits', 'Top Worldwide'];
     
     generos.forEach((collectionName) => {
       this.inicioAppService.getTracks(collectionName).subscribe(

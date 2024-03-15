@@ -17,7 +17,7 @@ export class LoginAppComponent implements OnInit {
   onLogin(form: NgForm): void {
     if (form.valid) {
       this.inicioAppService.loginApp(form.value).subscribe(() => {
-        this.router.navigate(['/api'])
+        this.router.navigate(['/apiHome'])
       });
     } else {
       this.toast.error('Complete todos los campos para continuar');

@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 @import '~bootstrap/dist/css/bootstrap.css';
+@import '../node_modules/ngx-toastr/toastr.css';
 
 .navbar {
   background-color: #170b1f;
@@ -180,11 +181,18 @@ body {
 }
 
 .toast-error {
-  color: rgb(255, 0, 0) !important;
+  background-color: #f4dc05;
+  color: black !important;
   font-family: 'Times New Roman', serif !important;
   font-size: 20px;
 }
 
+.toast-info {
+  background-color: #9B9FF2;
+  color: black !important;
+  font-family: 'Times New Roman', serif !important;
+  font-size: 20px;
+}
 .body-api {
   background: #E0D9F6;
 }

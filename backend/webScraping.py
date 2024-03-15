@@ -288,9 +288,9 @@ else:
             div_canciones = soup.find_all('div', class_="JR0qJ")
 
             # Verifica si la colección ya existe
-            if "TopWorldwide" not in db.list_collection_names():
+            if "Top Worldwide" not in db.list_collection_names():
                 # Si la colección no existe, crea una nueva colección
-                collection = db["TopWorldwide"]
+                collection = db["Top Worldwide"]
                                     
                 if div_canciones:
                     for div_cancion in div_canciones:
@@ -357,7 +357,7 @@ else:
                         # Inserta el documento en la base de datos
                         collection.insert_one(document) 
 
-                    # Lista de sufijos de URL
+# Lista de sufijos de URL
 sufijos = ["1970s", "1980s", "1990s", "2000s", "2010s"]
 
 for sufijo in sufijos:
