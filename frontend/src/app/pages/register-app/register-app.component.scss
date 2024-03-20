@@ -1,15 +1,19 @@
-.form input[type="submit"]{
-    margin-top: 4%;
+.form input[type="submit"] {
+  margin-top: 4%;
 }
+
 .img-fluid {
-    height: auto;
-    object-fit: cover;
-  }
-  
-  .info_container {
+  height: auto;
+  object-fit: cover;
+}
+
+.info_container {
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
     padding-bottom: 100%; // Esto hace que la altura sea igual al ancho
     overflow: hidden;
-  
+
     .form {
       position: absolute;
       top: 10px;
@@ -19,3 +23,4 @@
       // Aquí puedes agregar más estilos para el formulario
     }
   }
+}

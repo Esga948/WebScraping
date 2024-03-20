@@ -1,5 +1,5 @@
-.form input[type="submit"]{
-    margin-top: 4%;
+.form input[type="submit"] {
+    margin-top: 5%;
 }
 
 .link {
@@ -8,15 +8,20 @@
 }
 
 .info_container {
-    padding-bottom: 100%; // Esto hace que la altura sea igual al ancho
-    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
 
-    .form {
-        position: absolute;
-        top: 30px;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        // Aquí puedes agregar más estilos para el formulario
+    @media (min-width: 768px) {
+        padding-bottom: 100%; // Esto hace que la altura sea igual al ancho
+        overflow: hidden;
+
+        .form {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            // Aquí puedes agregar más estilos para el formulario
+        }
     }
 }

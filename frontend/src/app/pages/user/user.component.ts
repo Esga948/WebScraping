@@ -39,6 +39,7 @@ export class UserComponent implements OnInit {
     );
   }
 
+  //subir imagen
   onFileChange(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
@@ -58,6 +59,7 @@ export class UserComponent implements OnInit {
     }
   }
 
+  //guardar imagen
   onImag(form: NgForm) {
     if (form.valid && this.file) {
       const formData = new FormData();
@@ -66,6 +68,9 @@ export class UserComponent implements OnInit {
       this.inicioAppService.saveImag(formData).subscribe(
         (res) => {
           this.toast.info('Imagen guardada');
+          // Recargar la página
+          window.location.reload();
+
           this.inicioAppService.getU().subscribe(
             (res) => {
               this.imag = `http://localhost:8080/${res}`;

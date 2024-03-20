@@ -95,6 +95,8 @@ usuarioAppController.loginAppUser = async (req, res, next) => {
 function enviarCorreo(email, token) {
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
+    port: 465, // Puerto para SSL
+    secure: true, // Usar SSL  
     auth: {
       user: "esga948@vidalibarraquer.net",
       pass: "39471948S",

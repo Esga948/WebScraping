@@ -22,7 +22,7 @@
                     <p class="label">Nombre:</p>
                     <p><input type="text" [(ngModel)]="userAppName"></p>
                     <p class="label">Email:</p>
-                    <p><input type="email" [(ngModel)]="userAppEmail" readonly></p>
+                    <p><input type="email" [ngModel]="userAppEmail" readonly></p>
 
                     <div class="btn_container">
                         <button button class="btn" (click)="name()">Guardar</button>
