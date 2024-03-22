@@ -1,5 +1,5 @@
 .form input[type="submit"] {
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .link {
@@ -17,11 +17,15 @@
 
         .form {
             position: absolute;
-            top: 10px;
+            top: 15px;
             left: 0;
             bottom: 0;
             right: 0;
             // Aquí puedes agregar más estilos para el formulario
+        }
+
+        .form input[type="submit"] {
+            margin-top: 7%;
         }
     }
 }

@@ -1,6 +1,8 @@
-h2.header{
+h2.header {
   margin-top: 30px;
+  background-color: transparent;
 }
+
 .generos {
   background-color: rgb(231, 210, 231);
 }
@@ -14,9 +16,14 @@ h2.header{
 
 .list_canciones {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 10px; // Espacio entre los elementos
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
 
   // Asegúrate de que los elementos hijos no se desborden
   .cancion {

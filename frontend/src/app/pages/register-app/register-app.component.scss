@@ -12,7 +12,7 @@
 
   @media (min-width: 768px) {
     padding-bottom: 100%; // Esto hace que la altura sea igual al ancho
-    overflow: hidden;
+    overflow: auto;
 
     .form {
       position: absolute;
