@@ -6,7 +6,6 @@ body {
   margin: 0;
   padding-bottom: 10%;
   min-height: 100vh; // Asegura que el cuerpo tenga al menos la misma altura que la ventana del navegador
-
 }
 
 h2.header {
@@ -29,17 +28,16 @@ h2.header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   border-radius: 15px;
 }
 
-.cont{
+.cont {
   @media (max-width: 767px) {
     max-height: 250px;
     overflow-y: auto;
   }
-
 }
+
 .generos h2 {
   color: #ebecf3;
   background-color: rgb(179, 133, 179);
@@ -52,6 +50,15 @@ h2.header {
     margin-left: -20px;
   }
 
+  &.expanded {
+    height: auto; // Cuando está expandido, el contenido puede tomar todo el espacio que necesita
+  }
+
+  &:not(.expanded) {
+    height: 0; // Cuando no está expandido, el contenido no ocupa espacio
+    overflow: hidden; // Asegura que el contenido no visible no se desborde
+  }
+
   border-radius: 15px;
   padding: 10px;
 }
@@ -61,14 +68,13 @@ h2.header {
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-auto-rows: repeat(5, 1fr);
   gap: 10px; // Espacio entre los elementos
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-auto-rows: repeat(3, 1fr);
   }
-
 
   // Asegúrate de que los elementos hijos no se desborden
   .cancion {
@@ -101,6 +107,3 @@ h2.header {
     }
   }
 }
-
-
-//separacion entre las letras y la imagen
