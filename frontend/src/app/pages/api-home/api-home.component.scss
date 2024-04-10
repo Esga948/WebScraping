@@ -15,11 +15,7 @@ h2.header {
 
 .generos {
   background-color: rgb(231, 210, 231);
-  max-width: calc(100% - 50px); // Restamos 20px (10px de cada lado) al ancho total
-
-  @media (min-width: 768px) {
-    max-width: calc(100% - 15%); // Restamos 20px (10px de cada lado) al ancho total
-  }
+  max-width: calc(100% - 15%);
 
   width: 100%;
   margin: 15px auto 30px auto;
@@ -42,21 +38,12 @@ h2.header {
   color: #ebecf3;
   background-color: rgb(179, 133, 179);
   //background-color: indigo;
-  width: calc(100% + 30px);
-  margin-left: -15px;
+  width: calc(100% + 20px);
+  margin-left: -10px;
 
   @media (min-width: 768px) {
     width: calc(100% + 40px);
     margin-left: -20px;
-  }
-
-  &.expanded {
-    height: auto; // Cuando está expandido, el contenido puede tomar todo el espacio que necesita
-  }
-
-  &:not(.expanded) {
-    height: 0; // Cuando no está expandido, el contenido no ocupa espacio
-    overflow: hidden; // Asegura que el contenido no visible no se desborde
   }
 
   border-radius: 15px;

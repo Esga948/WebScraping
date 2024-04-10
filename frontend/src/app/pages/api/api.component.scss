@@ -15,11 +15,7 @@ h2.header {
 
 .generos {
   background-color: rgb(231, 210, 231);
-  max-width: calc(100% - 50px); // Restamos 20px (10px de cada lado) al ancho total
-
-  @media (min-width: 768px) {
-    max-width: calc(100% - 15%); // Restamos 20px (10px de cada lado) al ancho total
-  }
+  max-width: calc(100% - 15%);
 
   width: 100%;
   margin: 15px auto 30px auto;
