@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioAppService } from 'src/app/services/inicio-app.service';
-
+import { GuardService } from 'src/app/services/guard.service';
 @Component({
   selector: 'app-navbar-api',
   templateUrl: './navbar-api.component.html',
@@ -11,7 +11,7 @@ export class NavbarApiComponent implements OnInit {
   userAppName: string = '';
   imag: string = '';
 
-  constructor(private inicioAppService: InicioAppService) {}
+  constructor(private inicioAppService: InicioAppService, private guard: GuardService) {}
 
   ngOnInit(): void {
     this.userAppName = this.inicioAppService.getName();
@@ -39,6 +39,7 @@ export class NavbarApiComponent implements OnInit {
   }
 
   logout(): void {
+    this.guard.isLogout();
     this.inicioAppService.logout();
     window.location.href = '/login';
   }

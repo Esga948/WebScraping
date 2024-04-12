@@ -1,4 +1,19 @@
+<div class="div pb-1">
+    <h2 class="header">Lo Más Escuchado</h2>
+    <div class="generos" *ngFor="let genre of allTracks" [ngStyle]="{'background-color': genre.expanded ? 'rgb(231, 210, 231)' : 'transparent'}">
+        <h2 (click)="expanded(genre)">{{ genre.collectionName }}</h2>
+        <div class="cont">
+            <div class="list_canciones" *ngIf="genre.expanded">
+                <div class="cancion" *ngFor="let track of genre.tracks">
+                    <div class="imag_cont">
+                        <img src="{{track.imagen}}" alt="Imagen cancion">
+                    </div>
+                    {{ track.cancion }} <br> {{ track.artista }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
-
-<button button class="btn" (click)="sendRegister()">Start</button>
+    <button button class="btn" (click)="sendRegister()">Start</button>
 </div>

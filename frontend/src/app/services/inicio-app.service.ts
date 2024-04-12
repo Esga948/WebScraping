@@ -6,9 +6,10 @@ import { Track } from '../models/track';
 import { tap } from 'rxjs';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class InicioAppService {
   APP_SERVER: string = 'http://localhost:8080';
   appSubject = new BehaviorSubject(false);
@@ -16,6 +17,7 @@ export class InicioAppService {
   private name: string = '';
   private email: string = '';
   private imag: string = '';
+
   constructor(private httpClient: HttpClient, private toast: ToastrService) {}
 
   registerApp(user: UserApp): Observable<JwtResp> {

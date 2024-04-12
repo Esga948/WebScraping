@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
+import { RedirectGuard } from './guard/redirect.guard';
+import { GuardService } from './services/guard.service';
 
 import { HomeComponent } from './pages/home/home.component';
 import { LoginAppComponent } from './pages/login-app/login-app.component';
@@ -8,7 +10,6 @@ import { AuthTokenComponent } from './pages/auth-token/auth-token.component';
 import { ApiComponent } from './pages/api/api.component';
 import { UserComponent } from './pages/user/user.component';
 import { PassTokenComponent } from './pages/pass-token/pass-token.component';
-import { ApiHomeComponent } from './pages/api-home/api-home.component';
 import { ApiDeComponent } from './pages/api-de/api-de.component';
 
 const routes: Routes = [
@@ -17,16 +18,19 @@ const routes: Routes = [
   { path: 'register', component: RegisterAppComponent },
   { path: 'login', component: LoginAppComponent },
   { path: 'authToken', component: AuthTokenComponent },
-  { path: 'api', component: ApiComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'api', canActivate: [RedirectGuard], component: ApiComponent },
+  { path: 'user', canActivate: [RedirectGuard], component: UserComponent },
   { path: 'passToken', component: PassTokenComponent },
-  { path: 'apiHome', component: ApiHomeComponent },
-  { path: 'apiDe', component: ApiDeComponent},
+  { path: 'apiDe', canActivate: [RedirectGuard], component: ApiDeComponent },
   { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [
+    GuardService,
+    { provide: RedirectGuard, useFactory: RedirectGuard, deps: [GuardService, Router]}
+  ]
 })
 export class AppRoutingModule {}
