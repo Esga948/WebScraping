@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { RedirectGuard } from './guard/redirect.guard';
 import { GuardService } from './services/guard.service';
+import { ToastrService } from 'ngx-toastr';
 
 import { HomeComponent } from './pages/home/home.component';
 import { LoginAppComponent } from './pages/login-app/login-app.component';
@@ -29,7 +30,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    { provide: RedirectGuard, useFactory: RedirectGuard, deps: [GuardService, Router]}
+    { provide: RedirectGuard, useFactory: RedirectGuard, deps: [GuardService, Router, ToastrService]}
   ]
 })
 export class AppRoutingModule {}

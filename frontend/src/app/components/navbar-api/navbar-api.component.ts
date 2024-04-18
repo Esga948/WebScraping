@@ -23,6 +23,7 @@ export class NavbarApiComponent implements OnInit {
 
     this.inicioAppService.getU().subscribe(
       async (res) => {
+        console.log( res)
         if (res == '') {
           this.imag = '../assets/p.png';
         } else {
