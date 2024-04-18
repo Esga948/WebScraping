@@ -29,7 +29,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    GuardService,
     { provide: RedirectGuard, useFactory: RedirectGuard, deps: [GuardService, Router]}
   ]
 })

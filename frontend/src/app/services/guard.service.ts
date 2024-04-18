@@ -4,20 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GuardService {
-  loggedIn = false;
-
   constructor() { }
 
   isLoggedIn() {
-    console.log("guard " + this.loggedIn)
-    return this.loggedIn;
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
 
   isLogin(){
-    this.loggedIn = true;
+    localStorage.setItem('isLoggedIn', 'true');
   }
 
   isLogout(){
-    this.loggedIn = false;
+    localStorage.setItem('isLoggedIn', 'false');
   }
 }

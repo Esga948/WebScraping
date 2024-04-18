@@ -19,6 +19,7 @@ import { UserComponent } from './pages/user/user.component';
 import { PassTokenComponent } from './pages/pass-token/pass-token.component';
 import { ApiHomeComponent } from './pages/api-home/api-home.component';
 import { ApiDeComponent } from './pages/api-de/api-de.component';
+import { GuardService } from './services/guard.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { ApiDeComponent } from './pages/api-de/api-de.component';
     positionClass: 'toast-top-right',
     preventDuplicates: true,
   })],
-  providers: [InicioAppService],
+  providers: [InicioAppService, GuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

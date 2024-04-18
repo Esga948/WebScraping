@@ -6,17 +6,19 @@ import { GuardService } from 'src/app/services/guard.service';
   templateUrl: './navbar-api.component.html',
   styleUrls: ['./navbar-api.component.scss'],
 })
-
 export class NavbarApiComponent implements OnInit {
   userAppName: string = '';
   imag: string = '';
 
-  constructor(private inicioAppService: InicioAppService, private guard: GuardService) {}
+  constructor(
+    private inicioAppService: InicioAppService,
+    private guard: GuardService
+  ) {}
 
   ngOnInit(): void {
     this.userAppName = this.inicioAppService.getName();
     if (!this.userAppName) {
-      this.userAppName = "Nombre Usuario"
+      this.userAppName = 'Nombre Usuario';
     }
 
     this.inicioAppService.getU().subscribe(
@@ -24,15 +26,25 @@ export class NavbarApiComponent implements OnInit {
         if (res == '') {
           this.imag = '../assets/p.png';
         } else {
-          const response = await fetch('http://localhost:8080/' + res);
-          if (!response.ok) {
+          try {
+            const response = await fetch('http://localhost:8080/' + res);
+            if (!response.ok) {
+              this.imag = '../assets/p.png';
+            } else {
+              this.imag = `http://localhost:8080/${res}`;
+            }
+          } catch (error) {
+            console.error('Error al obtener la imagen del usuario:', error);
             this.imag = '../assets/p.png';
-          } else {
-            this.imag = `http://localhost:8080/${res}`;
           }
         }
       },
       (err) => {
+        if (err.status === 404) {
+          console.log('No se ha iniciado sesión');
+        } else {
+          console.error('Error al obtener el usuario:', err);
+        }
         this.imag = '../assets/p.png';
       }
     );
@@ -43,5 +55,4 @@ export class NavbarApiComponent implements OnInit {
     this.inicioAppService.logout();
     window.location.href = '/login';
   }
-
 }

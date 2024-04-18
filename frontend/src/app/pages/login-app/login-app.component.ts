@@ -19,7 +19,6 @@ export class LoginAppComponent implements OnInit {
     if (form.valid) {
       this.inicioAppService.loginApp(form.value).subscribe(() => {
         this.guard.isLogin();
-        console.log("Log in guard: " + this.guard.loggedIn)
         this.router.navigate(['/apiHome'])
       });
     } else {
