@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { InicioAppService } from 'src/app/services/inicio-app.service';
 import { Track } from 'src/app/models/track';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { Track } from 'src/app/models/track';
 export class HomeComponent {
   allTracks: { collectionName: string; tracks: Track[]; expanded: boolean }[] = [];
 
-  constructor(private router: Router, private inicioAppService: InicioAppService) {}
+  constructor(private router: Router, private inicioAppService: InicioAppService, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.getInfo();
@@ -31,6 +32,8 @@ export class HomeComponent {
         },
         (error) => {
           console.error('Error:', error);
+          this.toast.error('Error con la base de datos');
+
         }
       );
     });

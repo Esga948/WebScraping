@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioAppService } from 'src/app/services/inicio-app.service';
 import { Track } from 'src/app/models/track';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-api-de',
@@ -10,7 +11,7 @@ import { Track } from 'src/app/models/track';
 export class ApiDeComponent implements OnInit {
   allTracks: { collectionName: string; tracks: Track[]; expanded: boolean }[] = [];
 
-  constructor(private inicioAppService: InicioAppService) {}
+  constructor(private inicioAppService: InicioAppService, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.getInfo();
@@ -30,6 +31,7 @@ export class ApiDeComponent implements OnInit {
         },
         (error) => {
           console.error('Error:', error);
+          this.toast.error('Error con la base de datos');
         }
       );
     });

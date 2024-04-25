@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class InicioAppService {
   APP_SERVER: string = 'http://localhost:8080';
-  appSubject = new BehaviorSubject(false);
+  //appSubject = new BehaviorSubject(false);
   private token: string = '';
   private name: string = '';
   private email: string = '';
@@ -153,6 +153,10 @@ export class InicioAppService {
     return this.httpClient.get<string[]>(`${this.APP_SERVER}/getCollections`);
   }
 
+  audiusT(): Observable<string[]>{
+    return this.httpClient.get<string[]>(`${this.APP_SERVER}/tracksAu`);
+  }
+
   getTracks(collectionName: string): Observable<Track[]> {
     return this.httpClient.get<Track[]>(
       `${this.APP_SERVER}/datsT/${collectionName}`
@@ -198,6 +202,7 @@ export class InicioAppService {
     localStorage.removeItem('EMAIL');
     this.httpClient.post(`${this.APP_SERVER}/logout`, {});
   }
+
 
   private saveToken(token: string, expiresIn: string): void {
     localStorage.setItem('ACCESS_TOKEN', token);

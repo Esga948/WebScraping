@@ -12,6 +12,7 @@ import { ApiComponent } from './pages/api/api.component';
 import { UserComponent } from './pages/user/user.component';
 import { PassTokenComponent } from './pages/pass-token/pass-token.component';
 import { ApiDeComponent } from './pages/api-de/api-de.component';
+import { AudiusComponent } from './pages/audius/audius.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'user', canActivate: [RedirectGuard], component: UserComponent },
   { path: 'passToken', component: PassTokenComponent },
   { path: 'apiDe', canActivate: [RedirectGuard], component: ApiDeComponent },
+  { path: 'audius', component:AudiusComponent},
   { path: '**', redirectTo: '/home' },
 ];
 

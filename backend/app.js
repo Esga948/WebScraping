@@ -68,7 +68,7 @@ mongoose.connect(url, {
 
 const bd = mongoose.connection;
 bd.on("error", (error) => {
-  console.log("Error de conexion a la base de datos " + error);
+  console.error("Error de conexion a la base de datos " + error);
 });
 bd.once("open", () => {
   console.log("Conexion con la base de datos");

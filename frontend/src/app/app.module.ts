@@ -20,6 +20,7 @@ import { PassTokenComponent } from './pages/pass-token/pass-token.component';
 import { ApiHomeComponent } from './pages/api-home/api-home.component';
 import { ApiDeComponent } from './pages/api-de/api-de.component';
 import { GuardService } from './services/guard.service';
+import { AudiusComponent } from './pages/audius/audius.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { GuardService } from './services/guard.service';
     PassTokenComponent,
     ApiHomeComponent,
     ApiDeComponent,
+    AudiusComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NoopAnimationsModule,
   ToastrModule.forRoot({
@@ -42,7 +44,7 @@ import { GuardService } from './services/guard.service';
     positionClass: 'toast-top-right',
     preventDuplicates: true,
   })],
-  providers: [InicioAppService, GuardService],
+  providers: [InicioAppService, GuardService, AudiusComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
