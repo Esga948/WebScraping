@@ -21,6 +21,7 @@ import { ApiHomeComponent } from './pages/api-home/api-home.component';
 import { ApiDeComponent } from './pages/api-de/api-de.component';
 import { GuardService } from './services/guard.service';
 import { AudiusComponent } from './pages/audius/audius.component';
+import { BtnArribaComponent } from './components/btn-arriba/btn-arriba.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AudiusComponent } from './pages/audius/audius.component';
     ApiHomeComponent,
     ApiDeComponent,
     AudiusComponent,
+    BtnArribaComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NoopAnimationsModule,
   ToastrModule.forRoot({
